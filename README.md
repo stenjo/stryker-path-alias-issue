@@ -9,9 +9,10 @@ When using Stryker with Vitest and the `vite-tsconfig-paths` plugin for TypeScri
 ### Current Status
 
 ⚠️ **Note**: This issue may be intermittent or configuration-dependent. Initial testing shows:
-- ✅ Simple monorepo structures may work
-- ❌ Complex multi-workspace structures with cross-workspace imports may fail
-- The failure typically manifests as "Failed to load url" errors in Stryker's sandbox
+
+-   ✅ Simple monorepo structures may work
+-   ❌ Complex multi-workspace structures with cross-workspace imports may fail
+-   The failure typically manifests as "Failed to load url" errors in Stryker's sandbox
 
 If you can reproduce this reliably, please contribute your findings!
 
@@ -45,24 +46,27 @@ stryker-path-alias-issue/
 ## Reproduction Steps
 
 1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 2. **Run tests (all pass):**
-   ```bash
-   npm test
-   ```
+
+    ```bash
+    npm test
+    ```
 
 3. **Run mutation testing on shared folder (works):**
-   ```bash
-   npm run stryker:shared
-   ```
+
+    ```bash
+    npm run stryker:shared
+    ```
 
 4. **Run mutation testing on with-alias folder (fails):**
-   ```bash
-   npm run stryker:alias
-   ```
+    ```bash
+    npm run stryker:alias
+    ```
 
 ## Root Cause
 
@@ -72,9 +76,10 @@ The `vite-tsconfig-paths` plugin breaks Stryker's sandbox path resolution:
 2. **With-alias folder** uses path aliases: `import { add } from '@shared/math'` ❌
 
 When Stryker creates a sandbox (temporary directory), the `vite-tsconfig-paths` plugin cannot correctly resolve path aliases because:
-- The plugin expects paths to be resolved relative to the original `tsconfig.json`
-- Stryker's sandbox creates a different directory structure
-- Path resolution fails with "Failed to load url" errors
+
+-   The plugin expects paths to be resolved relative to the original `tsconfig.json`
+-   Stryker's sandbox creates a different directory structure
+-   Path resolution fails with "Failed to load url" errors
 
 ## Workaround
 
@@ -82,19 +87,20 @@ The only current workaround is to avoid using path aliases and use relative impo
 
 ## Environment
 
-- Node.js: v22.15.0
-- Stryker: 9.2.0
-- Vitest: 4.0.6
-- vite-tsconfig-paths: 5.1.4
-- TypeScript: 5.7.2
+-   Node.js: v22.15.0
+-   Stryker: 9.2.0
+-   Vitest: 4.0.6
+-   vite-tsconfig-paths: 5.1.4
+-   TypeScript: 5.7.2
 
 ## Related Issues
 
 This issue affects any monorepo using:
-- Stryker mutation testing
-- Vitest as test runner
-- Vite with vite-tsconfig-paths plugin
-- TypeScript path aliases
+
+-   Stryker mutation testing
+-   Vitest as test runner
+-   Vite with vite-tsconfig-paths plugin
+-   TypeScript path aliases
 
 ## Expected Behavior
 

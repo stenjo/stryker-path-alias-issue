@@ -1,20 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@shared": ["shared/src"],
-      "@shared/*": ["shared/src/*"]
-    }
-  },
-  "include": [],
-  "references": [
-    { "path": "./shared" },
-    { "path": "./with-alias" }
-  ]
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@shared": ["shared/src"],
+            "@shared/*": ["shared/src/*"]
+        }
+    },
+    "include": [],
+    "references": [{ "path": "./shared" }, { "path": "./with-alias" }]
 }

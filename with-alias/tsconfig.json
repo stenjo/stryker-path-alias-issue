@@ -1,14 +1,12 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "rootDir": "./src",
-    "outDir": "./dist"
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "references": [
-    { "path": "../shared" }
-  ]
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "composite": true,
+        "declaration": true,
+        "rootDir": "./src",
+        "outDir": "./dist"
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+    "references": [{ "path": "../shared" }]
 }

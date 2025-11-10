@@ -37,12 +37,15 @@ Use the template from `PUSH_INSTRUCTIONS.md`
 ## What You'll See
 
 ### ✅ npm test
+
 All 17 tests pass
 
 ### ✅ npm run stryker:shared
+
 Mutation testing completes successfully
 
 ### ❌ npm run stryker:alias
+
 Error: Failed to load url .../calculator.ts
 
 This demonstrates the incompatibility between Stryker and vite-tsconfig-paths!

@@ -17,6 +17,7 @@ git push -u origin main
 ## What's Included
 
 ### Project Structure
+
 ```
 stryker-path-alias-issue/
 ├── README.md                      # Overview of the issue
@@ -51,9 +52,10 @@ stryker-path-alias-issue/
 ## After Pushing
 
 Once pushed, you can share the repository URL with:
-- Stryker maintainers (https://github.com/stryker-mutator/stryker-js/issues)
-- Community forums
-- Stack Overflow questions
+
+-   Stryker maintainers (https://github.com/stryker-mutator/stryker-js/issues)
+-   Community forums
+-   Stack Overflow questions
 
 The repository URL will be: https://github.com/stenjo/stryker-path-alias-issue
 
@@ -61,22 +63,22 @@ The repository URL will be: https://github.com/stenjo/stryker-path-alias-issue
 
 1. **Push the repository** (see commands above)
 2. **Install dependencies** on another machine to verify:
-   ```bash
-   git clone https://github.com/stenjo/stryker-path-alias-issue.git
-   cd stryker-path-alias-issue
-   npm install
-   ```
+    ```bash
+    git clone https://github.com/stenjo/stryker-path-alias-issue.git
+    cd stryker-path-alias-issue
+    npm install
+    ```
 3. **Run the reproduction**:
-   ```bash
-   npm test                # All tests pass
-   npm run stryker:shared  # Works (relative imports)
-   npm run stryker:alias   # Fails (path aliases)
-   ```
+    ```bash
+    npm test                # All tests pass
+    npm run stryker:shared  # Works (relative imports)
+    npm run stryker:alias   # Fails (path aliases)
+    ```
 4. **Create GitHub issue** at https://github.com/stryker-mutator/stryker-js/issues with:
-   - Link to this reproduction repo
-   - Brief description
-   - Expected vs actual behavior
-   - Environment details
+    - Link to this reproduction repo
+    - Brief description
+    - Expected vs actual behavior
+    - Environment details
 
 ## Issue Template
 
@@ -85,6 +87,7 @@ When creating the GitHub issue, you can use this template:
 **Title:** `Stryker sandbox fails with vite-tsconfig-paths plugin for TypeScript path aliases`
 
 **Description:**
+
 ```
 Stryker mutation testing fails when using the `vite-tsconfig-paths` plugin to resolve TypeScript path aliases in a monorepo setup.
 

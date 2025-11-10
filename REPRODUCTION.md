@@ -4,8 +4,8 @@ This document provides detailed steps to reproduce the Stryker + vite-tsconfig-p
 
 ## Prerequisites
 
-- Node.js v18 or higher
-- npm or yarn
+-   Node.js v18 or higher
+-   npm or yarn
 
 ## Step 1: Install Dependencies
 
@@ -49,6 +49,7 @@ Mutation score: 75.00%
 ```
 
 The shared folder works because it uses simple relative imports:
+
 ```typescript
 import { add, subtract } from "./math"; // ✅ Works
 ```
@@ -71,6 +72,7 @@ Does the file exist?
 ```
 
 The with-alias folder fails because it uses path aliases:
+
 ```typescript
 import { add, subtract } from "@shared/math"; // ❌ Fails in Stryker sandbox
 ```
@@ -87,6 +89,7 @@ import { add, subtract } from "@shared/math"; // ❌ Fails in Stryker sandbox
 ### File Structure Comparison
 
 **Original structure:**
+
 ```
 project/
 ├── shared/src/math.ts
@@ -94,6 +97,7 @@ project/
 ```
 
 **Stryker sandbox structure:**
+
 ```
 .stryker-tmp/sandbox1234567/
 ├── shared/src/math.ts
@@ -112,6 +116,7 @@ import { add } from "./math"; // Relative path - always works
 ```
 
 **Stryker output:**
+
 ```
 Mutant tested: 20/20
 All mutants tested successfully
@@ -125,6 +130,7 @@ import { add } from "@shared/math"; // Path alias - fails in sandbox
 ```
 
 **Stryker output:**
+
 ```
 Error: Failed to load url .../with-alias/src/calculator.ts
 ```
@@ -138,10 +144,10 @@ import { defineConfig } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths"; // This breaks Stryker!
 
 export default defineConfig({
-  plugins: [tsconfigPaths()], // ❌ Causes sandbox path resolution issues
-  test: {
-    // ... test config
-  }
+    plugins: [tsconfigPaths()], // ❌ Causes sandbox path resolution issues
+    test: {
+        // ... test config
+    },
 });
 ```
 
@@ -149,12 +155,12 @@ export default defineConfig({
 
 ```json
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@shared/*": ["shared/src/*"] // Path alias definition
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@shared/*": ["shared/src/*"] // Path alias definition
+        }
     }
-  }
 }
 ```
 
@@ -163,15 +169,16 @@ export default defineConfig({
 The only current workaround is to remove the `vite-tsconfig-paths` plugin from `vitest.config.ts` and use relative imports everywhere. However, this defeats the purpose of having path aliases in a monorepo.
 
 **Modified vitest.config.ts (workaround):**
+
 ```typescript
 import { defineConfig } from "vitest/config";
 // import tsconfigPaths from "vite-tsconfig-paths"; // ❌ Remove this
 
 export default defineConfig({
-  // plugins: [tsconfigPaths()], // ❌ Remove this
-  test: {
-    // ... test config
-  }
+    // plugins: [tsconfigPaths()], // ❌ Remove this
+    test: {
+        // ... test config
+    },
 });
 ```
 
@@ -180,6 +187,7 @@ Then change all imports to use relative paths.
 ## Expected Fix
 
 Stryker should either:
+
 1. Support Vite plugins that perform path resolution in the sandbox environment
 2. Provide configuration to disable specific Vite plugins during mutation testing
 3. Document this incompatibility and provide guidance on monorepo setups
@@ -188,12 +196,12 @@ Stryker should either:
 
 ```json
 {
-  "node": "v22.15.0",
-  "@stryker-mutator/core": "^9.2.0",
-  "@stryker-mutator/vitest-runner": "^9.2.0",
-  "vitest": "^4.0.6",
-  "vite": "^6.0.7",
-  "vite-tsconfig-paths": "^5.1.4",
-  "typescript": "^5.7.2"
+    "node": "v22.15.0",
+    "@stryker-mutator/core": "^9.2.0",
+    "@stryker-mutator/vitest-runner": "^9.2.0",
+    "vitest": "^4.0.6",
+    "vite": "^6.0.7",
+    "vite-tsconfig-paths": "^5.1.4",
+    "typescript": "^5.7.2"
 }
 ```
