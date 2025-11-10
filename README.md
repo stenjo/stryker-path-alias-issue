@@ -4,11 +4,20 @@ This repository demonstrates a compatibility issue between Stryker mutation test
 
 ## Problem Description
 
-When using Stryker with Vitest and the `vite-tsconfig-paths` plugin for TypeScript path alias resolution, mutation testing **fails** for code that uses path aliases but **works** for code using simple relative imports.
+When using Stryker with Vitest and the `vite-tsconfig-paths` plugin for TypeScript path alias resolution in a monorepo, mutation testing **may fail** for code that uses path aliases to import from other workspaces, depending on the specific configuration.
 
-### Error
+### Current Status
 
-```
+⚠️ **Note**: This issue may be intermittent or configuration-dependent. Initial testing shows:
+- ✅ Simple monorepo structures may work
+- ❌ Complex multi-workspace structures with cross-workspace imports may fail
+- The failure typically manifests as "Failed to load url" errors in Stryker's sandbox
+
+If you can reproduce this reliably, please contribute your findings!
+
+### Error (When It Occurs)
+
+```text
 Error: Failed to load url /private/var/folders/.../stryker-tmp/sandbox1234567/src/with-alias/math.ts (resolved id: /private/var/folders/.../stryker-tmp/sandbox1234567/src/with-alias/math.ts) in /private/var/folders/.../stryker-tmp/sandbox1234567/src/with-alias/math.ts. Does the file exist?
 ```
 

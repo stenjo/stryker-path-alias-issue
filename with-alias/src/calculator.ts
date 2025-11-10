@@ -1,8 +1,10 @@
 /**
  * Calculator that uses PATH ALIASES to import from shared (fails with Stryker)
+ * This simulates a frontend importing from a shared workspace
  */
 
-import { add, subtract, multiply, divide } from "@shared/math"; // Path alias import!
+import { add, subtract, multiply, divide } from "@shared"; // Path alias import!
+// Note: This imports from ../../../shared/src/math via the @shared alias
 
 export class Calculator {
   public add(a: number, b: number): number {
