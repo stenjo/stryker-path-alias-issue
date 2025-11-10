@@ -1,0 +1,22 @@
+{
+  "$schema": "https://stryker-mutator.io/stryker-schema.json",
+  "testRunner": "vitest",
+  "vitest": {
+    "configFile": "vitest.config.ts"
+  },
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "concurrency": 2,
+  "mutate": [
+    "shared/src/**/*.ts",
+    "with-alias/src/**/*.ts",
+    "!**/*.spec.ts",
+    "!**/*.test.ts"
+  ],
+  "incremental": true,
+  "incrementalFile": "reports/stryker-incremental.json"
+}

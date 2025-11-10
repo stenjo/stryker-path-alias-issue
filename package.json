@@ -1,0 +1,31 @@
+{
+  "name": "stryker-path-alias-issue",
+  "version": "1.0.0",
+  "description": "Minimal reproduction of Stryker + vite-tsconfig-paths incompatibility",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "stryker": "stryker run",
+    "stryker:shared": "stryker run --mutate 'shared/src/**/*.ts' --reporters clear-text,progress",
+    "stryker:alias": "stryker run --mutate 'with-alias/src/**/*.ts' --reporters clear-text,progress"
+  },
+  "keywords": [
+    "stryker",
+    "vitest",
+    "vite",
+    "tsconfig-paths",
+    "mutation-testing",
+    "bug-reproduction"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@stryker-mutator/core": "^9.2.0",
+    "@stryker-mutator/vitest-runner": "^9.2.0",
+    "@vitest/ui": "^4.0.6",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^4.0.6"
+  }
+}
